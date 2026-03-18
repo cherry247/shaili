@@ -147,11 +147,13 @@ a:hover {
 /* SECTIONS */
 
 section {
+  position: relative;
   padding-top: 4vh;
-  height: 96vh;
+  height: 100vh;
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
+  overflow: hidden;
 }
 
 .section-container {
@@ -161,10 +163,26 @@ section {
 /* PROFILE SECTION */
 
 #profile {
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 5rem;
   height: 80vh;
+}
+
+.scroll-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  width: 2.2rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.scroll-btn:hover {
+  opacity: 1;
 }
 
 .section__pic-container {
@@ -278,11 +296,49 @@ section {
 .about-pic{
     border-radius: 2rem;
 }
-.arrow{
-    position: absolute;
-    right: -5rem;
-    bottom:2.5rem;
+.arrow,
+.arrow-bottom,
+.arrow-top,
+.scroll-btn {
+  position: absolute;
+  cursor: pointer;
+  width: 2.2rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  display: none;
 }
+
+.arrow.visible,
+.arrow-top.visible,
+.arrow-bottom.visible,
+.scroll-btn.visible {
+  display: block;
+}
+
+.arrow:hover,
+.arrow-bottom:hover,
+.arrow-top:hover,
+.scroll-btn:hover {
+  opacity: 1;
+}
+
+.arrow-bottom {
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.arrow-top {
+  right: 2rem;
+  top: 1.5rem;
+  transform: rotate(180deg);
+}
+
+.scroll-btn {
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+}
+
 .details-container {
     padding: 1.5rem;
     flex: 1;
