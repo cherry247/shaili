@@ -364,36 +364,194 @@ section {
 /* experience section */
 #experience{
   position: relative;
+  background: white;
+  padding: 3rem 0 2.5rem;
 }
-.experience-sub-title {
+
+#experience p.section__text__p1 {
   color: rgb(85, 85, 85);
   font-weight: 600;
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
 }
+
+#experience .title {
+  margin-bottom: 1.25rem;
+}
+
+.experience-sub-title {
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+#experience .details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 280px;
+  min-width: 250px;
+}
+
+#experience .experience-details-container .details-container:nth-child(2) {
+  flex: 2 1 480px;
+  min-width: 400px;
+}
+
 .experience-details-container{
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-.article-container{
-  display: flex;
-  text-align: initial;
   flex-wrap: wrap;
-  flex-direction: row;
-  gap: 2.5rem;
-  justify-content: space-around;
+  gap: 1.5rem;
+  justify-content: center;
 }
-article {
+
+.skill-badge-row {
   display: flex;
-  width: 10rem;
-  justify-content: space-around;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  padding: 0.75rem 0;
+}
+
+.skill-badge-row img {
+  height: 26px;
+  border-radius: 5px;
+  box-shadow: 0 3px 7px rgba(15, 23, 42, 0.12);
+}
+
+.details-container {
+  flex: 1 1 320px;
+  max-width: 470px;
+  background: white;
+  border: rgb(163, 163, 163) 0.1rem solid;
+  border-radius: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+  margin: 0.5rem;
+}
+
+#experience .article-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+}
+
+article {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+article h3 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+article p {
+  margin: 0;
+  color: #475569;
+  font-size: 0.85rem;
 }
 
 article .icon {
-  cursor: default;
+  width: 1.2rem;
+  filter: brightness(0) invert(0.15);
 }
+
+@media (max-width: 820px) {
+  .article-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1200px) {
+  section {
+    margin: 0 3rem;
+    padding-top: 5vh;
+    height: auto;
+    overflow: visible;
+  }
+
+  #profile {
+    flex-direction: column;
+    gap: 2rem;
+    height: auto;
+  }
+
+  .section__pic-container {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .section__text {
+    width: 100%;
+  }
+
+  .experience-details-container,
+  .about-containers {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .details-container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .skill-badge-row {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 650px) {
+  nav {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    font-size: 1.1rem;
+    gap: 1rem;
+  }
+
+  section {
+    margin: 0 1rem;
+  }
+
+  .section__pic-container,
+  .experience-details-container,
+  .skill-badge-row {
+    width: 100%;
+  }
+
+  .section__pic-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .experience-sub-title {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    width: auto;
+    padding: 0.8rem 1rem;
+  }
+}
+
+
 /* projects */
 #projects {
   position: relative;
