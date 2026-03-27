@@ -1,0 +1,425 @@
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES — Shaili Patel Portfolio
+   Breakpoints: 1200 | 900 | 768 | 480 | 360
+   ============================================================ */
+
+/* ── 1200px: Tablet landscape — switch to hamburger ── */
+@media screen and (max-width: 1200px) {
+  #desktop-nav {
+    display: none;
+  }
+
+  #hamburger-nav {
+    display: flex;
+  }
+
+  section {
+    margin: 0 3rem;
+    padding-top: 4vh;
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+  }
+
+  /* Profile */
+  #profile {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    height: auto;
+    padding-bottom: 4rem;
+  }
+
+  .section__pic-container {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+  }
+
+  .section__text {
+    width: 100%;
+  }
+
+  /* About */
+  .section-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    height: auto;
+  }
+
+  #about .section__pic-container {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+  }
+
+  .about-containers {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .about-details-container {
+    width: 100%;
+  }
+
+  /* Experience */
+  .experience-details-container {
+    gap: 1rem;
+  }
+
+  #experience .details-container,
+  #experience .about-containers .details-container:nth-child(2) {
+    flex: 1 1 100%;
+    min-width: unset;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .details-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Projects */
+  #projects .about-containers {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #projects .details-container {
+    flex: 1 1 280px;
+    max-width: 420px;
+  }
+
+  /* Contact */
+  #contact {
+    height: auto;
+    padding-bottom: 4rem;
+  }
+}
+
+/* ── 900px: Tablet portrait ── */
+@media screen and (max-width: 900px) {
+  section {
+    margin: 0 2rem;
+  }
+
+  .title {
+    font-size: 2.6rem;
+  }
+
+  .section__text__p2 {
+    font-size: 1.5rem;
+  }
+
+  .experience-sub-title {
+    font-size: 1.7rem;
+  }
+
+  .about-containers {
+    gap: 1rem;
+  }
+
+  #about .section__pic-container {
+    width: 210px;
+    height: 210px;
+  }
+
+  #projects .about-containers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #projects .details-container {
+    flex: unset;
+    max-width: 480px;
+    width: 100%;
+  }
+}
+
+/* ── 768px: Large phones / small tablets ── */
+@media screen and (max-width: 768px) {
+  section {
+    margin: 0 1.5rem;
+    padding-top: 3vh;
+  }
+
+  nav {
+    height: auto;
+    padding: 0.9rem 1.2rem;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .menu-links a {
+    font-size: 1.2rem;
+    padding: 10px 16px;
+  }
+
+  /* Profile */
+  #profile {
+    gap: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .section__pic-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .section__text__p2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.8rem;
+    width: 7.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* About */
+  .about-containers {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .details-container {
+    padding: 1.1rem;
+  }
+
+  .text-container p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Experience */
+  .experience-sub-title {
+    font-size: 1.5rem;
+  }
+
+  .skill-badge-row {
+    gap: 0.5rem;
+  }
+
+  .skill-badge-row img {
+    height: 22px;
+  }
+
+  /* Contact */
+  .contact-info-upper-container {
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem auto;
+  }
+
+  .contact-info-container {
+    margin: 0.5rem 1rem;
+  }
+
+  .contact-info-container p {
+    font-size: 1rem;
+  }
+
+  .email-icon {
+    height: 2rem;
+  }
+}
+
+/* ── 480px: Mobile ── */
+@media screen and (max-width: 480px) {
+  section {
+    margin: 0 0.8rem;
+    padding-top: 2.5vh;
+  }
+
+  nav {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .logo {
+    font-size: 1.35rem;
+  }
+
+  /* Profile */
+  #profile {
+    gap: 1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .section__pic-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .section__text {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .section__text__p1 {
+    font-size: 0.95rem;
+  }
+
+  .section__text__p2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Stack buttons vertically on very small screens */
+  .btn-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    width: 80%;
+    max-width: 9rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .socials-container {
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+  }
+
+  .icon {
+    height: 1.5rem;
+  }
+
+  /* About */
+  .details-container {
+    padding: 0.9rem;
+    border-radius: 1.2rem;
+  }
+
+  .details-container h3 {
+    font-size: 1rem;
+  }
+
+  .details-container p {
+    font-size: 0.85rem;
+  }
+
+  .text-container p {
+    font-size: 0.875rem;
+  }
+
+  /* Experience */
+  .experience-sub-title {
+    font-size: 1.3rem;
+  }
+
+  .skill-badge-row {
+    gap: 0.4rem;
+    padding: 0.4rem 0;
+  }
+
+  .skill-badge-row img {
+    height: 20px;
+  }
+
+  /* Projects */
+  .project-img {
+    border-radius: 1.2rem;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+    margin: 0.6rem;
+  }
+
+  .project-btn {
+    font-size: 0.8rem;
+    padding: 0.55rem 0.75rem;
+    width: auto;
+  }
+
+  /* Contact */
+  .contact-info-upper-container {
+    margin: 1rem auto;
+    padding: 0.4rem;
+    border-radius: 1.2rem;
+  }
+
+  .contact-info-container {
+    margin: 0.4rem 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .contact-info-container a {
+    font-size: 0.9rem;
+  }
+
+  .email-icon {
+    height: 1.75rem;
+  }
+
+  /* Arrows — tuck closer to edges on small screens */
+  .arrow-bottom {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .arrow-top {
+    right: 0.75rem;
+    top: 0.75rem;
+  }
+}
+
+/* ── 360px: Very small phones ── */
+@media screen and (max-width: 360px) {
+  section {
+    margin: 0 0.5rem;
+  }
+
+  .logo {
+    font-size: 1.15rem;
+  }
+
+  .section__pic-container {
+    width: 155px;
+    height: 155px;
+  }
+
+  .title {
+    font-size: 1.65rem;
+  }
+
+  .section__text__p2 {
+    font-size: 1.05rem;
+  }
+
+  .btn {
+    max-width: 8rem;
+    font-size: 0.82rem;
+  }
+
+  .skill-badge-row img {
+    height: 18px;
+  }
+
+  .experience-sub-title {
+    font-size: 1.15rem;
+  }
+
+  .contact-info-container a {
+    font-size: 0.82rem;
+  }
+}

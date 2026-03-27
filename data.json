@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "title": "Shaili Patel — Portfolio",
+    "favicon": ""
+  },
+  "theme": {
+    "--bg": "#242424",
+    "--ink": "#FFF5CD",
+    "--muted": "#B7E0FF",
+    "--accent": "#E78F81",
+    "--accent-light": "#2e2e2e",
+    "--line": "rgba(255, 245, 205, 0.1)",
+    "--nav-h": "68px"
+  },
+  "hero": {
+    "name": "Shaili Patel",
+    "availability": "Open to new opportunities",
+    "profilePic": "./assets/profilePic.jpg",
+    "headline": [
+      "Building",
+      "<em>scalable</em>",
+      "systems"
+    ],
+    "tagline": "I'm <strong>Shaili Patel</strong> — a Software Engineer with 3+ years specializing in Java, Spring Boot, Kafka, and Microservices. I build event-driven backends that are fast, reliable, and observable.",
+    "ctaPrimary": {
+      "label": "↓ Download Resume",
+      "href": "./assets/Shaili_Resume.pdf"
+    },
+    "ctaSecondary": {
+      "label": "Say Hello",
+      "href": "#contact"
+    }
+  },
+  "about": {
+    "sectionLabel": "About me",
+    "title": "Engineering backends that <em style='font-style:italic;color:var(--accent)'>scale</em> without breaking.",
+    "paragraphs": [
+      "I'm a Software Engineer with 3+ years of experience building robust backend systems. I specialize in Java and Spring Boot microservices, designing event-driven architectures with Apache Kafka that handle high-throughput workloads reliably.",
+      "I'm passionate about observability — if you can't measure it, you can't improve it. I instrument systems with monitoring tools so teams have full confidence in production at all times."
+    ],
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Apache Kafka",
+      "Microservices",
+      "PostgreSQL",
+      "MySQL",
+      "Redis",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "Prometheus",
+      "Grafana",
+      "REST APIs",
+      "Git"
+    ]
+  },
+  "projects": [
+    {
+      "number": "01",
+      "title": "kafka-lookup",
+      "description": "A real-time lookup service built using Apache Kafka Streams and Spring Boot. This service consumes data from a Kafka topic, stores it in a queryable state store, and exposes a REST API to retrieve values instantly using a key.",
+      "tech": [
+        "Java",
+        "Kafka",
+        "Spring Boot",
+        "Kafka streams"
+      ],
+      "href": "https://github.com/cherry247/kafka-lookup"
+    },
+    {
+      "number": "02",
+      "title": "chatbot-using-python",
+      "description": "Chatbot 1.0 is a self learning chatbot coded in python. This application allows you to find the near answer to the question asked. Chatbot1.0 will first parse through the document and after studying it. ",
+      "tech": [
+        "Python",
+        "Cosine similarity"
+      ],
+      "href": "https://github.com/cherry247/chatbot-using-python"
+    },
+    {
+      "number": "03",
+      "title": "OCR-bill-detection",
+      "description": "OCR bill detection is a python program which can detect the type of your household bills. for example if you have samples of electricity bills, movie bills or grocery bills, this python program which detect the category of the bill and store the data in the bill into a file . Further Data visualization is done to monitor your montly expense so that you can save wisely and track your spending.",
+      "tech": [
+        "Python",
+        "OCR",
+        "Image processing",
+        "Image to text"
+      ],
+      "href": "https://github.com/cherry247/OCR-bill-detection"
+    }
+  ],
+  "experience": [
+    {
+      "date": "July 2024 — Present",
+      "role": "Software Engineer",
+      "company": "Target, Bengaluru",
+      "description": "I engineered and modernized high-volume review systems by developing 5+ Micronaut-Kotlin microservices and migrating legacy file-based ingestion to a scalable, real-time event-driven architecture. By redesigning data flows to eliminate redundant API calls and implementing automated monitoring dashboards, I successfully reduced processing latency, prevented rate-limit failures, and improved incident response times by 30–50%."
+    },
+    {
+      "date": "July 2022 — May 2024",
+      "role": "Software Engineer",
+      "company": "Walmart, Bengaluru",
+      "description": "I optimized store layouts and product placement efficiency by collaborating with cross-functional teams to design and implement core algorithms and features. By leveraging Spring Boot and REST APIs to automate the test suite, I achieved a 60% reduction in manual testing efforts, significantly bolstering system robustness and streamlining the release process. Furthermore, I actively contributed to engineering excellence initiatives, ensuring high-quality project outcomes and a more reliable technical architecture."
+    },
+    {
+      "date": "Feb 2022 — July 2022",
+      "role": "Business Technology Solutions Associate Intern",
+      "company": "ZS Associates, Pune",
+      "description": "I collaborated with the VERSO team to develop an AI-based commercial execution product, driving a 20% increase in product efficiency within six months of its release. By implementing robust Data Quality Assessments, I achieved a 15% reduction in system errors and significantly improved data accuracy, ensuring optimal functionality and overall system performance."
+    }
+  ],
+  "contact": {
+    "sectionLabel": "Get in touch",
+    "tagline": "Let's build something <em>reliable</em> together.",
+    "email": "shaili.work.01@gmail.com"
+  },
+  "footer": {
+    "name": "Shaili Patel",
+    "year": "2026",
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/cherry247"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/shailipatel/"
+      }
+    ]
+  }
+}

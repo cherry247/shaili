@@ -1,228 +1,972 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaili Patel</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      z-index: 100;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(245, 242, 236, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--line);
+      --ink: #1a1a1a;
+      --muted: #4a4a4a;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-name::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-name:hover::after {
+      width: 100%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      background: rgba(245, 242, 236, 0.97);
+      backdrop-filter: blur(20px);
+      padding: 2rem 5vw;
+      flex-direction: column;
+      gap: 1.5rem;
+      z-index: 99;
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-110%);
+      transition: transform 0.35s ease;
+      --ink: #1a1a1a;
+      --muted: #4a4a4a;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      display: flex;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 1.5rem;
+      font-family: 'DM Serif Display', serif;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 6vh) 5vw 8vh;
+    }
+
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: calc(var(--nav-h) + 12vh);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      max-width: 520px;
+      margin-top: 2.5rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+
+    .hero-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.5px solid var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-intro {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      transition: background 0.25s, color 0.25s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn-fill {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn-fill:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .hero-deco {
+      position: absolute;
+      right: 4vw;
+      bottom: 8vh;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(12rem, 22vw, 22rem);
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.06em;
+      opacity: 0;
+      animation: fadeIn 1.2s 0.8s forwards;
+    }
+
+    .divider {
+      width: calc(100% - 10vw);
+      height: 1px;
+      background: var(--line);
+      margin: 0 5vw;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+      font-size: 1.05rem;
+    }
+
+    .about-skills {
+      padding-top: calc(var(--nav-h) + 6vh + 1.5rem);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: transparent;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      min-height: auto;
+      padding-bottom: 10vh;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .project-card {
+      position: relative;
+      padding: 2.5rem 2rem;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s ease;
+      z-index: 0;
+    }
+
+    .project-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .project-card:hover .project-num,
+    .project-card:hover .project-title,
+    .project-card:hover .project-desc,
+    .project-card:hover .project-tech span {
+      color: var(--bg);
+    }
+
+    .project-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      transition: color 0.3s;
+    }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 1.75rem;
+      transition: color 0.3s;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-tech span {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .project-arrow {
+      position: absolute;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      font-size: 1.2rem;
+      color: var(--muted);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .project-card:hover .project-arrow {
+      color: var(--bg);
+      transform: translate(3px, -3px);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      min-height: auto;
+      padding-bottom: 10vh;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 1px solid var(--line);
+      margin-top: 3rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3.5rem 2.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.06rem;
+      top: 0.45rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      background: var(--bg);
+      transition: background 0.3s;
+    }
+
+    .timeline-item:hover::before {
+      background: var(--accent);
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8vw;
+      align-items: start;
+      padding-bottom: 10vh;
+      min-height: auto;
+    }
+
+    .contact-big {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-big em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 0.65rem 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      #about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-skills {
+        padding-top: 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #contact {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body id="top">
-    <nav id="desktop-nav">
-       <div class="logo">Shaili Patel</div> 
-       <div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-       </div>
-    </nav>
-    <nav id="hamburger-nav">
-        <div class="logo">Shaili Patel</div>
-        <div class = "hamburger-menu">
-            <div class = "hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        <div class="menu-links">
-            <li><a href="#about" onclick="toggleMenu()">About</a></li>
-            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-        </div>
-    </nav>
-    <section id="profile">
-        <div class="section__pic-container">
-        <img src="./assets/profilePic.jpg" alt="shaili patel">
-        </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello, I'm</p>
-            <h1 class="title">Shaili Patel</h1>
-            <p class="section__text__p2">Software Engineer</p>
-            <div class="btn-container">
-                <button class="btn btn-color-2" onclick="window.open('./assets/Shaili_Resume.pdf')">
-                Download CV</button>
-                <button class="btn btn-color-1" onclick="location.href='./#contact'">
-                    Contact Info</button>
-            </div>
-        <div class="socials-container">
-            <img src="./assets/linkedin.png" alt="Linked In" class="icon" onclick="location.href='https://www.linkedin.com/in/shaili-patel-376663190/'">
-            <img src="./assets/github.png" alt="Github" class="icon" onclick="location.href='https://github.com/cherry247'">
 
-        </div>
-        <img src="./assets/arrow.png" alt="Scroll down" class="icon arrow-bottom" onclick="location.href='#about'" />
-        </div>
-    </section>
-    <section id="about">
-        <img src="./assets/arrow.png" alt="Scroll up" class="icon arrow-top" onclick="location.href='#top'" />
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class = "title">About Me</h1>
-        <div class="section-container">
-            <div class="section__pic-container">
-                <img src="./assets/aboutPic.jpg" alt="about pic" class="about-pic">
-            </div>
-            <div class="about-details-container">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <img src="./assets/experience.png" alt="experience icon" class="icon">
-                        <h3>Experience</h3>
-                        <p>3+ Year<br/>Software Engineer-<i>Target</i></p>
-                    </div>
-                    <div class="details-container">
-                        <img src="./assets/education.png" alt="education icon" class="icon">
-                        <h3>Education</h3>
-                        <p>B.Tech<br/>Computer Science-<i>Nirma University</i></p>
-                    </div>
-                </div>
-                <div class="text-container">
-                    <p>Software Engineer with 3+ years of experience in backend development, specializing in Java, Spring Boot, Kafka, and Microservices. Experienced in building scalable event-driven systems, optimizing data pipelines, and improving system reliability
-through monitoring and observability tools.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow-bottom" onclick="location.href='#experience'"/>
-    </section>
-    <section id="experience">
-        <img src="./assets/arrow.png" alt="Scroll up" class="icon arrow-top" onclick="location.href='#about'" />
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Frontend</h2>
-                    <div class="skill-badge-row">
-                        <img src="https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=ffffff" alt="HTML" />
-                        <img src="https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=ffffff" alt="CSS" />
-                        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000000" alt="JavaScript" />
-                    </div>
-                </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Backend</h2>
-                    <div class="skill-badge-row">
-                        <img src="https://img.shields.io/badge/Java-007396?logo=java&logoColor=ffffff" alt="Java" />
-                        <img src="https://img.shields.io/badge/Kotlin-0095D5?logo=kotlin&logoColor=ffffff" alt="Kotlin" />
-                        <img src="https://img.shields.io/badge/Kafka-231F20?logo=apachekafka&logoColor=ffffff" alt="Kafka" />
-                        <img src="https://img.shields.io/badge/Kafka%20Streams-231F20?logo=apachekafka&logoColor=ffffff" alt="Kafka Streams" />
-                        <img src="https://img.shields.io/badge/Micronaut-FF4088?logo=micronaut&logoColor=ffffff" alt="Micronaut" />
-                        <img src="https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=ffffff" alt="Kubernetes" />
-                        <img src="https://img.shields.io/badge/REST%20API-444444?logo=swagger&logoColor=ffffff" alt="REST API" />
-                        <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=ffffff" alt="Docker" />
-                        <img src="https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=ffffff" alt="MongoDB" />
-                        <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=ffffff" alt="Python" />
-                        <img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=ffffff" alt="Swagger" />
-                        <img src="https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=ffffff" alt="PostgreSQL" />
-                        <img src="https://img.shields.io/badge/SpringBoot-6DB33F?logo=spring&logoColor=ffffff" alt="Spring Boot" />
-                        <img src="https://img.shields.io/badge/BigQuery-4285F4?logo=google-bigquery&logoColor=ffffff" alt="BigQuery" />
-                        <img src="https://img.shields.io/badge/GraphQL-E10098?logo=graphql&logoColor=ffffff" alt="GraphQL" />
-                        <img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=ffffff" alt="Git" />
-                    </div>
-                </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Tools</h2>
-                    <div class="skill-badge-row">
-                        <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=ffffff" alt="GitHub" />
-                        <img src="https://img.shields.io/badge/ChatGPT-11A37F?logo=openai&logoColor=ffffff" alt="ChatGPT" />
-                        <img src="https://img.shields.io/badge/CoPilot-00B0FF?logo=github&logoColor=ffffff" alt="CoPilot" />
-                        <img src="https://img.shields.io/badge/Jira-0052CC?logo=jira&logoColor=ffffff" alt="Jira" />
-                        <img src="https://img.shields.io/badge/Confluence-172B4D?logo=confluence&logoColor=ffffff" alt="Confluence" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="arrow icon" class="icon arrow-bottom" onclick="location.href='#projects'"/>
-    </section>
-    <section id="projects">
-        <img src="./assets/arrow.png" alt="Scroll up" class="icon arrow-top" onclick="location.href='#experience'" />
-        <p class="section__text__p1">Browse My</p>
-        <h1 class="title">Projects</h1>
-        <div class="experience-details-container">
-          <div class="about-containers">
-            <div class="details-container color-container">
-              <div class="article-container">
-                <img
-                  src="./assets/project-3.jpeg"
-                  alt="Project 1"
-                  class="project-img"
-                />
-              </div>
-              <h2 class="experience-sub-title project-title">OCR Bill Detection</h2>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/cherry247/OCR-bill-detection'"
-                >
-                Github
-                </button>
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://youtu.be/qfO9gqqMWxU?si=87PWrtGawAlBHmJ5'"
-                >
-                Demo
-                </button>
-              </div>
-            </div>
-            <div class="details-container color-container">
-              <div class="article-container">
-                <img
-                  src="./assets/project-4.png"
-                  alt="Project 2"
-                  class="project-img"
-                />
-              </div>
-              <h2 class="experience-sub-title project-title">ChatBot</h2>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://github.com/cherry247/chatbot-using-python'"
-                >
-                Github
-                </button>
-                <button
-                  class="btn btn-color-2 project-btn"
-                  onclick="location.href='https://youtu.be/vGrdYhxm0p8?si=o28buw75xKpZE7Cn'"
-                >
-                Demo
-                </button>
-              </div>
+<body>
+
+  <nav id="navbar">
+    <a href="#home" class="nav-name" id="nav-name"></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <section id="home">
+    <div class="hero-intro">
+      <div class="hero-avatar">
+        <img id="hero-pic" src="" alt="Profile" class="hero-avatar-img">
+      </div>
+      <span class="hero-tag" id="hero-availability"></span>
+    </div>
+    <h1 class="hero-headline" id="hero-headline"></h1>
+    <p class="hero-sub" id="hero-sub"></p>
+    <div class="hero-cta" id="hero-cta"></div>
+    <div class="hero-deco" id="hero-deco"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="about">
+    <div class="about-text">
+      <p class="section-label" id="about-label"></p>
+      <h2 class="section-title reveal" id="about-title"></h2>
+      <div id="about-paragraphs"></div>
+    </div>
+    <div class="about-skills">
+      <p class="section-label reveal">Skills &amp; tools</p>
+      <div class="skills-grid reveal" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+
+  <section id="experience">
+    <p class="section-label">Where I've been</p>
+    <h2 class="section-title reveal">Experience</h2>
+    <div class="timeline reveal" id="timeline"></div>
+  </section>
+
+
+  <div class="divider"></div>
+
+
+  <section id="projects">
+    <div class="projects-header">
+      <div>
+        <p class="section-label">Selected work</p>
+        <h2 class="section-title reveal" style="margin-bottom:0">Projects</h2>
+      </div>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact">
+    <div>
+      <p class="section-label" id="contact-label"></p>
+      <h2 class="contact-big reveal" id="contact-tagline"></h2>
+      <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:0.6rem;" class="reveal" id="contact-links">
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Your name</label>
+        <input type="text" id="name" placeholder="Jane Smith" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-fill"
+        style="border:none;cursor:pointer;font-family:'DM Sans',sans-serif;width:fit-content;">
+        Send message →
+      </button>
+      <p id="form-msg" style="font-size:0.85rem;color:var(--accent);display:none;margin-top:-0.5rem;">
+        Opening your email client...
+      </p>
+    </form>
+  </section>
+
+  <footer>
+    <span class="footer-name" id="footer-name"></span>
+    <div class="footer-links" id="footer-links"></div>
+    <span class="footer-copy" id="footer-copy"></span>
+  </footer>
+
+  <script>
+    let targetEmail = ""; // Global variable for the mailto logic
+
+    async function loadPortfolio() {
+      try {
+        const res = await fetch('./data.json');
+        const d = await res.json();
+
+        targetEmail = d.contact.email;
+
+        // ── Theme & Meta ──
+        const root = document.documentElement;
+        Object.entries(d.theme).forEach(([prop, val]) => root.style.setProperty(prop, val));
+        document.title = d.meta.title;
+
+        // ── Nav & Hero ──
+        document.getElementById('nav-name').textContent = d.hero.name;
+        document.getElementById('hero-availability').textContent = d.hero.availability;
+        document.getElementById('hero-pic').src = d.hero.profilePic;
+        document.getElementById('hero-deco').textContent = d.hero.decorativeLetter;
+        document.getElementById('hero-headline').innerHTML = d.hero.headline.join('<br>');
+        document.getElementById('hero-sub').innerHTML = d.hero.tagline;
+
+        const cta = document.getElementById('hero-cta');
+        cta.innerHTML = `
+          <a href="${d.hero.ctaPrimary.href}" class="btn btn-fill">${d.hero.ctaPrimary.label}</a>
+          <a href="${d.hero.ctaSecondary.href}" class="btn">${d.hero.ctaSecondary.label}</a>
+        `;
+
+        // ── About ──
+        document.getElementById('about-label').textContent = d.about.sectionLabel;
+        document.getElementById('about-title').innerHTML = d.about.title;
+        document.getElementById('about-paragraphs').innerHTML = d.about.paragraphs
+          .map(p => `<p class="reveal">${p}</p>`).join('');
+        document.getElementById('skills-grid').innerHTML = d.about.skills
+          .map(s => `<span class="skill-tag">${s}</span>`).join('');
+
+        // ── Projects ──
+        document.getElementById('projects-grid').innerHTML = d.projects.map(p => `
+          <a class="project-card reveal" href="${p.href}" target="_blank" rel="noopener">
+            <div class="project-num">${p.number}</div>
+            <h3 class="project-title">${p.title}</h3>
+            <p class="project-desc">${p.description}</p>
+            <div class="project-tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+            <div class="project-arrow">↗</div>
+          </a>
+        `).join('');
+
+        // ── Experience ──
+        document.getElementById('timeline').innerHTML = d.experience.map(e => `
+          <div class="timeline-item">
+            <div class="timeline-date">${e.date}</div>
+            <div class="timeline-role">${e.company}</div>
+            <div class="timeline-company">${e.role}</div>
+            <p class="timeline-desc">${e.description}</p>
           </div>
-        </div>
-        <img
-          src="./assets/arrow.png"
-          alt="Arrow icon"
-          class="icon arrow-bottom"
-          onclick="location.href='./#contact'"
-        />
-      </section>
-      <section id="contact">
-        <img src="./assets/arrow.png" alt="Scroll up" class="icon arrow-top" onclick="location.href='#projects'" />
-        <p class="section__text__p1">Get in Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-info-upper-container">
-          <div class="contact-info-container">
-            <img
-              src="./assets/email.png"
-              alt="Email icon"
-              class="icon contact-icon email-icon"
-            />
-            <p><a href="mailto:shailipatel0127@gmail.com">shaili.work.01@gmail.com</a></p>
-          </div>
-          <div class="contact-info-container">
-            <img
-              src="./assets/linkedin.png"
-              alt="LinkedIn icon"
-              class="icon contact-icon"
-            />
-            <p><a href="https://www.linkedin.com/in/shaili-patel-376663190/">LinkedIn</a></p>
-          </div>
-        </div>
-      </section>
-    <script src="script.js"></script>
+        `).join('');
+
+        // ── Contact ──
+        document.getElementById('contact-label').textContent = d.contact.sectionLabel;
+        document.getElementById('contact-tagline').innerHTML = d.contact.tagline;
+        document.getElementById('contact-links').innerHTML = `
+          <a href="mailto:${d.contact.email}" class="footer-links"
+            style="display:flex;gap:.5rem;align-items:center;text-decoration:none;color:var(--muted);font-size:0.95rem;">
+            ${d.contact.email}
+          </a>
+        `;
+
+        // ── Footer ──
+        document.getElementById('footer-name').textContent = d.footer.name;
+        document.getElementById('footer-copy').textContent = `© ${d.footer.year}`;
+        const fl = document.getElementById('footer-links');
+        fl.innerHTML = d.footer.links
+          .map(l => `<a href="${l.href}" target="_blank">${l.label}</a>`)
+          .join('');
+
+        // Re-run reveal observer after DOM is populated
+        initReveal();
+      } catch (err) { console.error("Error loading portfolio:", err); }
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const message = document.getElementById('message').value;
+
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+      const body = encodeURIComponent(`Hi, \n\n${message} \n\n Regards,\n ${name}`);
+
+      window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+
+      const msg = document.getElementById('form-msg');
+      msg.style.display = 'block';
+      e.target.reset();
+      setTimeout(() => { msg.style.display = 'none'; }, 4000);
+    }
+
+    function initReveal() {
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.style.transitionDelay = (i % 4) * 0.08 + 's';
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => observer.observe(el));
+    }
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    loadPortfolio();
+  </script>
 </body>
+
 </html>
